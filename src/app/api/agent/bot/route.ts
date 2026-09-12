@@ -4,7 +4,7 @@ import { requireSession } from "@/lib/auth";
 import { getDb } from "@/lib/db";
 import { unwrap } from "@/lib/rpc";
 import { isConfigured } from "@/lib/env";
-import { absoluteUrl } from "@/lib/url";
+import { requestBaseUrl } from "@/lib/url";
 
 export const dynamic = "force-dynamic";
 
@@ -24,7 +24,7 @@ export async function GET() {
       has_telegram_bot: user.has_telegram_bot,
       has_whatsapp_endpoint: user.has_whatsapp_endpoint,
       whatsapp_phone_number_id: user.whatsapp_phone_number_id,
-      webhook_url_template: `${absoluteUrl("/api/bot/whatsapp")}`,
+      webhook_url_template: `${await requestBaseUrl()}/api/bot/whatsapp`,
       commands: [
         { command: "balance", description: "Check the wallet balance" },
         { command: "prices", description: "Today's wholesale price list" },
@@ -65,7 +65,7 @@ export async function POST(request: Request) {
     let webhookError: string | null = null;
     if (channel === "telegram" && result.linked && typeof body.token === "string") {
       const token = body.token.trim();
-      const url = absoluteUrl(`/api/bot/telegram/${token}`);
+      const url = `${await requestBaseUrl()}/api/bot/telegram/${token}`;
       const payload: Record<string, unknown> = { url, allowed_updates: ["message"] };
       if (process.env.TELEGRAM_WEBHOOK_SECRET) payload.secret_token = process.env.TELEGRAM_WEBHOOK_SECRET;
 

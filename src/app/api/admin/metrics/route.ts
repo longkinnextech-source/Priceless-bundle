@@ -3,7 +3,7 @@ import { ApiError, jsonError } from "@/lib/api";
 import { requireAdmin } from "@/lib/auth";
 import { getDb } from "@/lib/db";
 import { isConfigured } from "@/lib/env";
-import { absoluteUrl } from "@/lib/url";
+import { requestBaseUrl } from "@/lib/url";
 
 export const dynamic = "force-dynamic";
 
@@ -23,7 +23,7 @@ export async function GET() {
       ok: true,
       ...metrics,
       config: config ?? {},
-      sms_webhook_url: absoluteUrl("/api/webhook/sms-deposit"),
+      sms_webhook_url: (await requestBaseUrl()) + "/api/webhook/sms-deposit",
       replica_check: db.kind,
     });
   } catch (error) {

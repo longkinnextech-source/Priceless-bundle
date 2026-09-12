@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { redirect } from "next/navigation";
 import AdminPanel from "@/components/pages/AdminPanel";
 import { currentUser } from "@/lib/auth";
-import { absoluteUrl } from "@/lib/url";
+import { requestBaseUrl } from "@/lib/url";
 
 export const metadata: Metadata = {
   title: "Admin",
@@ -17,5 +17,5 @@ export default async function AdminPage() {
   if (!session) redirect("/login?next=/admin");
   if (!session.admin) redirect("/buy");
 
-  return <AdminPanel operator={session.phone} smsWebhookUrl={absoluteUrl("/api/webhook/sms-deposit")} />;
+  return <AdminPanel operator={session.phone} smsWebhookUrl={await requestBaseUrl() + "/api/webhook/sms-deposit"} />;
 }
