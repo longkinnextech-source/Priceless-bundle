@@ -1,0 +1,187 @@
+@import "tailwindcss";
+
+/* ==========================================================================
+   Priceless Bundle — fire palette
+   Deep reds, warm oranges and gold/amber gradients over dark charcoal.
+   MTN yellow / Telecel red / AirtelTigo blue appear ONLY on network badges.
+   ========================================================================== */
+
+@theme {
+  /* charcoal / near-black surfaces */
+  --color-charcoal-950: #08080a;
+  --color-charcoal-900: #0e0e11;
+  --color-charcoal-850: #14141a;
+  --color-charcoal-800: #1b1b22;
+  --color-charcoal-700: #24242d;
+  --color-charcoal-600: #32323d;
+  --color-ash-500: #6b6b7a;
+  --color-ash-400: #9a9aa8;
+  --color-ash-300: #c3c3cf;
+  --color-ash-200: #e4e4ec;
+
+  /* fire — primary brand ramp */
+  --color-fire-50: #fff5ee;
+  --color-fire-100: #ffe6d6;
+  --color-fire-200: #ffc9a6;
+  --color-fire-300: #ffa871;
+  --color-fire-400: #ff8a3d;
+  --color-fire-500: #ff6a15;
+  --color-fire-600: #ed4d05;
+  --color-fire-700: #c23a06;
+  --color-fire-800: #8f2a06;
+  --color-fire-900: #5d1b05;
+
+  /* gold / amber accents */
+  --color-ember-300: #ffd98a;
+  --color-ember-400: #ffc152;
+  --color-ember-500: #f5a524;
+  --color-ember-600: #d18112;
+
+  /* deep red */
+  --color-crimson-500: #d92020;
+  --color-crimson-600: #b31616;
+  --color-crimson-700: #8a1010;
+
+  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+
+  --shadow-fire: 0 10px 40px -12px rgba(255, 106, 21, 0.55);
+  --shadow-glow: 0 0 0 1px rgba(255, 106, 21, 0.35), 0 12px 48px -16px rgba(255, 106, 21, 0.5);
+}
+
+:root {
+  color-scheme: dark;
+}
+
+html,
+body {
+  background-color: var(--color-charcoal-950);
+  color: var(--color-ash-200);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  /* Warm ember wash behind the charcoal, very subtle. */
+  background-image:
+    radial-gradient(900px 520px at 12% -8%, rgba(194, 58, 6, 0.22), transparent 62%),
+    radial-gradient(760px 460px at 92% 4%, rgba(245, 165, 36, 0.12), transparent 60%),
+    radial-gradient(1100px 700px at 50% 110%, rgba(237, 77, 5, 0.1), transparent 60%);
+  background-attachment: fixed;
+  min-height: 100dvh;
+}
+
+::selection {
+  background: rgba(255, 106, 21, 0.35);
+  color: #fff;
+}
+
+/* Scrollbars */
+* {
+  scrollbar-color: var(--color-charcoal-600) transparent;
+  scrollbar-width: thin;
+}
+*::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+*::-webkit-scrollbar-thumb {
+  background: var(--color-charcoal-600);
+  border-radius: 999px;
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+*::-webkit-scrollbar-thumb:hover {
+  background: var(--color-fire-700);
+  background-clip: content-box;
+}
+
+@layer utilities {
+  /* The signature brand gradient. */
+  .fire-gradient {
+    background-image: linear-gradient(135deg, #8f2a06 0%, #ed4d05 38%, #ff8a3d 66%, #f5a524 100%);
+  }
+  .fire-gradient-soft {
+    background-image: linear-gradient(135deg, rgba(143, 42, 6, 0.5) 0%, rgba(237, 77, 5, 0.35) 45%, rgba(245, 165, 36, 0.28) 100%);
+  }
+  .fire-text {
+    background-image: linear-gradient(120deg, #ffc152 0%, #ff8a3d 42%, #ed4d05 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .fire-border {
+    border-color: rgba(255, 106, 21, 0.28);
+  }
+  .glass {
+    background-color: rgba(20, 20, 26, 0.72);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+  }
+  .card-surface {
+    background-image: linear-gradient(160deg, rgba(30, 30, 38, 0.92), rgba(14, 14, 17, 0.94));
+    border: 1px solid rgba(255, 255, 255, 0.07);
+  }
+  .card-fire {
+    background-image: linear-gradient(160deg, rgba(58, 20, 8, 0.85), rgba(14, 14, 17, 0.95));
+    border: 1px solid rgba(255, 106, 21, 0.3);
+  }
+  .text-shadow-fire {
+    text-shadow: 0 2px 24px rgba(255, 106, 21, 0.45);
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    scrollbar-width: none;
+  }
+}
+
+@layer base {
+  h1, h2, h3, h4 {
+    color: #fff;
+    letter-spacing: -0.02em;
+  }
+  a {
+    text-underline-offset: 3px;
+  }
+  input, select, textarea {
+    color-scheme: dark;
+  }
+  /* Remove spinner arrows on number inputs — prices are typed, not stepped. */
+  input[type="number"]::-webkit-outer-spin-button,
+  input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  input[type="number"] {
+    -moz-appearance: textfield;
+    appearance: textfield;
+  }
+}
+
+@keyframes pb-rise {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-rise {
+  animation: pb-rise 0.4s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes pb-pulse-ring {
+  0% { box-shadow: 0 0 0 0 rgba(255, 106, 21, 0.45); }
+  70% { box-shadow: 0 0 0 12px rgba(255, 106, 21, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(255, 106, 21, 0); }
+}
+.animate-pulse-ring {
+  animation: pb-pulse-ring 2s infinite;
+}
+
+@keyframes pb-shimmer {
+  0% { background-position: -320px 0; }
+  100% { background-position: 320px 0; }
+}
+.skeleton {
+  background: linear-gradient(90deg, rgba(50, 50, 61, 0.35) 0%, rgba(80, 80, 95, 0.5) 50%, rgba(50, 50, 61, 0.35) 100%);
+  background-size: 640px 100%;
+  animation: pb-shimmer 1.3s infinite linear;
+}

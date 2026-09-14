@@ -1,0 +1,36 @@
+# dependencies
+/node_modules
+
+# next.js
+/.next/
+/out/
+next-env.d.ts
+
+# production
+/build
+
+# misc
+.DS_Store
+*.pem
+*.tsbuildinfo
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# env — never commit real credentials
+.env
+.env.local
+.env*.local
+
+# local database data (PGlite dev server)
+/.pgdata
+/tmp
+
+# test output
+/tests/.artifacts
+
+# e2e build dirs
+.next-e2e*

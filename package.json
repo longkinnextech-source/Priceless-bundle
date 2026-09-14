@@ -1,0 +1,45 @@
+{
+  "name": "priceless-bundle",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Priceless Bundle \u2014 VTU / mobile data reselling platform for Ghana, by LongKinnex Tech and Data.",
+  "scripts": {
+    "dev": "next dev",
+    "dev:local": "node scripts/dev-stack.mjs",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit",
+    "db:setup": "node scripts/db-setup.mjs",
+    "db:reset": "node scripts/db-setup.mjs --reset",
+    "db:verify": "node scripts/db-verify.mjs",
+    "test:sql": "node tests/sql.test.mjs",
+    "test:e2e": "node tests/e2e.mjs",
+    "test": "npm run test:sql && npm run test:e2e"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.58.0",
+    "jose": "^6.1.0",
+    "next": "16.3.5",
+    "pg": "^8.16.3",
+    "react": "19.3.0",
+    "react-dom": "19.3.0",
+    "zod": "^4.1.11"
+  },
+  "devDependencies": {
+    "@electric-sql/pglite": "^0.5.8",
+    "@electric-sql/pglite-socket": "^0.2.11",
+    "@tailwindcss/postcss": "^4.3.3",
+    "@types/node": "^22.18.6",
+    "@types/pg": "^8.15.5",
+    "@types/react": "^19.2.0",
+    "@types/react-dom": "^19.2.0",
+    "eslint": "^9.39.5",
+    "eslint-config-next": "^16.3.5",
+    "tailwindcss": "^4.3.3",
+    "typescript": "^5.9.2"
+  },
+  "engines": {
+    "node": ">=20.9.0"
+  }
+}
